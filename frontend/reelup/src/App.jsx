@@ -1,24 +1,16 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import {
-  Route,
-  Router,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router";
-import { useState } from "react";
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"; // Removed Router import
 import "./App.css";
-import { Landing, Home, Login, Signup } from "./pages/index";
+import { Landing, Home } from "./pages/index";
+import { Login, Signup } from "./features/authentication/pages/index";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} /> 
       </>
     )
   );
