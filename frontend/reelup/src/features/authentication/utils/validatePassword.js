@@ -16,5 +16,5 @@ export const validatePassword = (password) => {
 
   return regex.test(value)
     ? null
-    : "Password must contain uppercase, lowercase, number, and special character.";
+    : "Use uppercase, lowercase, number & special character.";
 };

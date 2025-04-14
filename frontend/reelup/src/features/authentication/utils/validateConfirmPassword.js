@@ -1,7 +1,8 @@
 import { isEmptyOrWhitespace } from "../../../utils";
-import { validatePassword } from "./validatePassword";
+import { validatePassword } from "./index";
 
-export const validateConfirmPassword = (password, confirmPassword) => {
+
+export const validateConfirmPassword = (confirmPassword, values) => {
   if (isEmptyOrWhitespace(confirmPassword)) {
     return "Confirm password is required.";
   }
@@ -9,7 +10,7 @@ export const validateConfirmPassword = (password, confirmPassword) => {
   const error = validatePassword(confirmPassword);
   if (error) return error;
 
-  if (password !== confirmPassword) {
+  if (values.password !== confirmPassword) {
     return "Passwords do not match.";
   }
 

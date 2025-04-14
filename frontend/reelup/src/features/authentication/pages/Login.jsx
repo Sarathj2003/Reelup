@@ -8,33 +8,27 @@ import useAuthForm from '../hooks/useAuthForm';
 
 
 const Login = () => {
-    const [emailOrMobile, setEmailOrMobile] = useState('');
-    const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState({}); 
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-
-      const newErrors = {};
-
-      const emailOrPhoneError = validateEmailOrPhone(emailOrMobile);
-      if (emailOrPhoneError) {
-        newErrors.emailOrMobile = emailOrPhoneError;
-      }
-
-      const passwordError = validatePassword(password);
-      if (passwordError) {
-        newErrors.password = passwordError;
-      }
-      
-      setErrors(newErrors);
-
-      if (Object.keys(newErrors).length === 0) {
-        console.log("Login successful:", { email: emailOrMobile, password });
-        // Call your API 
-      }
-
+  
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+  } = useAuthForm(
+    {
+      emailOrMobile: '',
+      password: '',
+    },
+    {
+      emailOrMobile: validateEmailOrPhone,
+      password: validatePassword,
+    },
+    (values) => {
+      console.log("Login successful:", values);
+      // Call API
     }
+  );
+
 
   return (
 
@@ -44,15 +38,15 @@ const Login = () => {
         <InputField
           type="text"
           placeholder="Email or Mobile number"
-          value={emailOrMobile}
-          onChange={(e) => setEmailOrMobile(e.target.value)}
+          value={values.emailOrMobile}
+          onChange={handleChange('emailOrMobile')}
           error={errors.emailOrMobile}
         />
         <InputField
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange('password')}
           error={errors.password}
         />
 

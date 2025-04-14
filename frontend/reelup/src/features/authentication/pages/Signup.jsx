@@ -4,50 +4,34 @@ import AuthLayout from '../components/AuthLayout';
 import InputField from '../../../components/form/InputField';
 import PrimaryButton from '../../../components/ui/PrimaryButton';
 import { validateEmailOrPhone, validatePassword, validateFullName,validateConfirmPassword } from '../utils'
+import useAuthForm from '../hooks/useAuthForm';
+
 
 const Signup = () => {
-    const [errors, setErrors] = useState({});
-    const [fullName, setFullName] = useState('');
-    const [emailOrMobile, setEmailOrMobile] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
 
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-
-      const newErrors = {};
-
-      const fullNameError = validateFullName(fullName);
-      if (fullNameError) {
-        newErrors.fullName = fullNameError;
-      }
-
-      const emailOrPhoneError = validateEmailOrPhone(emailOrMobile);
-      if (emailOrPhoneError) {
-        newErrors.emailOrMobile = emailOrPhoneError;
-      }
-
-      const passwordError = validatePassword(password);
-      if (passwordError) {
-        newErrors.password = passwordError;
-      }
-
-      const confirmPasswordError = validateConfirmPassword(password);
-      if (confirmPasswordError) {
-        newErrors.confirmPassword = confirmPasswordError;
-      }
-
-      setErrors(newErrors);
-
-      if (Object.keys(newErrors).length === 0) {
-        console.log("Login successful:", {
-          email: emailOrMobile,
-          password,
-          });
-          // Call your API
-        }
-    };
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+  } = useAuthForm(
+    {
+      fullName: '',
+      emailOrMobile: '',
+      password: '',
+      confirmPassword: '',
+    },
+    {
+      fullName: validateFullName,
+      emailOrMobile: validateEmailOrPhone,
+      password: validatePassword,
+      confirmPassword: validateConfirmPassword,
+    },
+    (values) => {
+      console.log("Signup successful:", values);
+      // Call API
+    }
+  );
 
   return (
     <AuthLayout>
@@ -56,29 +40,29 @@ const Signup = () => {
         <InputField
           type="text"
           placeholder="Full Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          value={values.fullName}
+          onChange={handleChange('fullName')}
           error={errors.fullName}
         />
         <InputField
           type="text"
           placeholder="Email or Mobile number"
-          value={emailOrMobile}
-          onChange={(e) => setEmailOrMobile(e.target.value)}
+          value={values.emailOrMobile}
+          onChange={handleChange('emailOrMobile')}
           error={errors.emailOrMobile}
         />
         <InputField
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange('password')}
           error={errors.password}
         />
         <InputField
           type="password"
           placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={values.confirmPassword}
+          onChange={handleChange('confirmPassword')}
           error={errors.confirmPassword}
         />
 

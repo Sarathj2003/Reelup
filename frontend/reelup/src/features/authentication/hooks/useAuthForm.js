@@ -1,64 +1,39 @@
 import { useState } from 'react';
-import {
-  validateEmailOrPhone,
-  validatePassword,
-  validateFullName,
-  validateConfirmPassword,
-} from '../utils';
 
-const useAuthForm = (mode = 'login') => {
-  const [fullName, setFullName] = useState('');
-  const [emailOrMobile, setEmailOrMobile] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const useAuthForm = (initialState, validators, onSubmit) => {
+  const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
 
-  const handleValidation = () => {
+  const handleChange = (field) => (e) => {
+    const value = e.target.value;
+    setValues((prev) => ({ ...prev, [field]: value }));
+
+    if (validators[field]) {
+      const error = validators[field](value, values);
+      setErrors((prev) => ({ ...prev, [field]: error }));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newErrors = {};
 
-    if (mode === 'signup') {
-      const nameError = validateFullName(fullName);
-      if (nameError) newErrors.fullName = nameError;
-    }
-
-    const emailError = validateEmailOrPhone(emailOrMobile);
-    if (emailError) newErrors.emailOrMobile = emailError;
-
-    const passError = validatePassword(password);
-    if (passError) newErrors.password = passError;
-
-    if (mode === 'signup') {
-      const confirmError = validateConfirmPassword(password, confirmPassword);
-      if (confirmError) newErrors.confirmPassword = confirmError;
+    for (const field in validators) {
+      const error = validators[field](values[field], values);
+      if (error) newErrors[field] = error;
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
-  const handleSubmit = (callback) => (e) => {
-    e.preventDefault();
-    if (handleValidation()) {
-      const formData = {
-        fullName,
-        emailOrMobile,
-        password,
-        ...(mode === 'signup' && { confirmPassword }),
-      };
-      callback(formData);
+    if (Object.keys(newErrors).length === 0) {
+      onSubmit(values);
     }
   };
 
   return {
-    fullName,
-    setFullName,
-    emailOrMobile,
-    setEmailOrMobile,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
+    values,
     errors,
+    handleChange,
     handleSubmit,
   };
 };
