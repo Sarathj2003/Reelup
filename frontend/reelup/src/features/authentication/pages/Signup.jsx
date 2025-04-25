@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from '../components/AuthLayout';
 import InputField from '../../../components/form/InputField';
 import PrimaryButton from '../../../components/ui/PrimaryButton';
@@ -7,7 +7,9 @@ import { validateEmailOrPhone, validatePassword, validateFullName,validateConfir
 import useAuthForm from '../hooks/useAuthForm';
 
 
+
 const Signup = () => {
+  const navigate = useNavigate();
 
   const {
     values,
@@ -29,7 +31,14 @@ const Signup = () => {
     },
     (values) => {
       console.log("Signup successful:", values);
-      // Call API
+    //   API call
+    // if Api call is successfull
+      navigate('/verify-otp', { 
+          state: { 
+              from: 'signup',
+              emailOrMobile: values.emailOrMobile, 
+          } 
+      });
     }
   );
 

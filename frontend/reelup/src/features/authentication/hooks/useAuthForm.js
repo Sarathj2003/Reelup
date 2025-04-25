@@ -35,6 +35,8 @@ const useAuthForm = (initialState, validators, onSubmit) => {
     errors,
     handleChange,
     handleSubmit,
+    setValues,
+    setErrors,
   };
 };
 

@@ -1,8 +1,5 @@
-import Login from "./Login";
-import Signup from "./Signup";
+export { default as Login } from './Login';
+export { default as Signup } from './Signup';
+export { default as ForgotPassword } from './ForgotPassword';
+export { default as OtpSubmit } from './OtpSubmit';
 
-
-
-
-
-export { Login, Signup }

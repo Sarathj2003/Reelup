@@ -11,13 +11,13 @@ const Landing = () => {
       <div className="flex flex-col items-center text-center max-w-2xl px-4">
         <div className="flex gap-2 sm:gap-4 md:gap-8 items-center mb-2">
           <h1 className="text-6xl sm:text-7xl md:text-9xl font-extrabold text-white">
-            Reelup
+            Reelup.
           </h1>
-          <img
+          {/* <img
             src={Logo}
             alt="Logo"
             className="h-[80px] sm:h-[100px] md:h-[130px] -ml-2 sm:-ml-4 md:-ml-6"
-          />
+          /> */}
         </div>
 
         <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-6 mt-3">

@@ -51,7 +51,11 @@ const Login = () => {
         />
 
         <div className="text-right text-sm text-gray-500 hover:underline cursor-pointer">
-          Forgot Password?
+          <Link
+          to='/forgot-password'
+          >
+            Forgot Password?
+          </Link>
         </div>
 
         <PrimaryButton type='submit' className='w-full'>
