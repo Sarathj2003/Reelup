@@ -9,7 +9,7 @@ const Navbar = ({ onToggleSidebar }) => {
     <nav className="bg-red-600 px-4 h-16 flex items-center justify-between">
       {/* STEP 2: Menu button triggers toggle from props */}
       <div className="flex items-center gap-2 text-white dark:text-black font-bold text-xl">
-        <button onClick={onToggleSidebar} className="p-2 text-2xl">
+        <button onClick={onToggleSidebar} className="rounded-full hover:bg-red-700 p-2 pt-3 text-2xl">
           <FiMenu />
         </button>
         Reelup.

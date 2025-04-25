@@ -39,6 +39,7 @@ const Login = () => {
           type="text"
           placeholder="Email or Mobile number"
           value={values.emailOrMobile}
+          className='h-12'
           onChange={handleChange('emailOrMobile')}
           error={errors.emailOrMobile}
         />
@@ -46,6 +47,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
           value={values.password}
+          className='h-12'
           onChange={handleChange('password')}
           error={errors.password}
         />

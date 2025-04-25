@@ -39,6 +39,7 @@ const ForgotPassword = () => {
           type="text"
           placeholder="Enter Email or Mobile Number"
           value={values.emailOrMobile}
+          className='h-12'
           onChange={handleChange('emailOrMobile')}
           error={errors.emailOrMobile}
         />

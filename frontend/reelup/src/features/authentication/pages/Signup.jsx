@@ -50,6 +50,7 @@ const Signup = () => {
           type="text"
           placeholder="Full Name"
           value={values.fullName}
+          className='h-12'
           onChange={handleChange('fullName')}
           error={errors.fullName}
         />
@@ -57,6 +58,7 @@ const Signup = () => {
           type="text"
           placeholder="Email or Mobile number"
           value={values.emailOrMobile}
+          className='h-12'
           onChange={handleChange('emailOrMobile')}
           error={errors.emailOrMobile}
         />
@@ -64,6 +66,7 @@ const Signup = () => {
           type="password"
           placeholder="Password"
           value={values.password}
+          className='h-12'
           onChange={handleChange('password')}
           error={errors.password}
         />
@@ -71,6 +74,7 @@ const Signup = () => {
           type="password"
           placeholder="Confirm Password"
           value={values.confirmPassword}
+          className='h-12'
           onChange={handleChange('confirmPassword')}
           error={errors.confirmPassword}
         />

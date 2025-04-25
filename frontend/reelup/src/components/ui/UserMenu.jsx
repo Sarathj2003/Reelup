@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FiUser } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,8 +30,8 @@ const UserMenu = () => {
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md rounded-lg z-10">
-          <div className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">Login</div>
-          <div className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">Signup</div>
+          <Link to={'/login'} className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">Login</Link>
+          <Link to={'/signup'} className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">Signup</Link>
         </div>
       )}
     </div>

@@ -19,7 +19,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}
-      className="text-white dark:text-black text-xl ml-4"
+      className="text-white dark:text-black text-xl ml-4 rounded-full hover:bg-red-700 p-2"
       title="Toggle Dark Mode"
     >
       {darkMode ? <FiSun /> : <FiMoon />}

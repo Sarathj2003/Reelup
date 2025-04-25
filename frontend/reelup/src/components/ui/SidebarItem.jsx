@@ -1,9 +1,20 @@
-const SidebarItem = ({ icon, label, isExpanded }) => {
+import { Link } from "react-router-dom";
+
+
+
+const SidebarItem = ({ icon, label, isExpanded, to }) => {
     return (
-      <div className="flex items-center gap-3 p-3 h-13 w-35 hover:bg-white/10 cursor-pointer ">
-        <span className="text-xl">{icon}</span>
+      <Link
+        to={to}
+        className={`flex items-center gap-3 p-1 h-13 w-45 cursor-pointer ${
+          isExpanded ? "hover:bg-red-700" : ""
+        }`}
+      >
+        <span className="text-xl rounded-full hover:bg-red-700 p-2">
+          {icon}
+        </span>
         {isExpanded && <span className="font-medium ">{label}</span>}
-      </div>
+      </Link>
     );
   };
   
