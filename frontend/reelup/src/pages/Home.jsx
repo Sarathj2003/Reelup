@@ -1,7 +1,9 @@
-const Home = () => (
-    <div className="p-4 text-xl   transition-colors duration-300">
-      🏠 Home Page
-    </div>
-  );
-  export default Home;
-  
+import React from 'react'
+
+function Home() {
+  return (
+    <div>Home</div>
+  )
+}
+
+export default Home

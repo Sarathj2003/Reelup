@@ -3,6 +3,7 @@ import UserMenu from "./UserMenu";
 import ThemeToggle from './ThemeToggle';
 import InputField from "../form/InputField";
 import { FiMenu } from "react-icons/fi";
+import { Link } from "react-router";
 
 const Navbar = ({ onToggleSidebar }) => {
   return (
@@ -12,7 +13,9 @@ const Navbar = ({ onToggleSidebar }) => {
         <button onClick={onToggleSidebar} className="rounded-full hover:bg-red-700 p-2 pt-3 text-2xl">
           <FiMenu />
         </button>
+        <Link to={'/'}>
         Reelup.
+        </Link>
       </div>
 
       <div className="flex-1 flex justify-center">
